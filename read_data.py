@@ -142,8 +142,9 @@ class realStation:
 
 
     def write_data(self):
+        #Daten bereinigen und  in einer csv Speichern
         with open("Data/" + str(self.id) + ".csv", "w+") as f:
-            f.write("year,DJF,MAM,JJA,SON,ANN\n")
+            f.write("year,DJF,MAM,JJA,SON,ANN\n") #Header
             for index, year in enumerate(self.data):
                 seas = [round(self.seas[index][0]/100,2), round(self.seas[index][1]/100,2), round(self.seas[index][3]/100,2), round(self.seas[index][3]/100,2), round(self.ann[index]/100, 2)]
                 for i in range(5):
