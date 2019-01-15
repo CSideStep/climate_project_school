@@ -14,7 +14,7 @@ class station:# Klasse zum Speichern und verwalten von Daten bezülich einer Sta
     years:List[year]
 
 
-def read_data(path="real_data.csv"):# Einlesen der Daten
+def read_data(path):# Einlesen der Daten
     stations = dict()#Dict
     with open(path) as f: # öffnen der Datei.
         for line in f: # für jede Zeile.
@@ -103,6 +103,7 @@ class realStation:
         self.dann = [-9999 for i in range(len(self.dseas))]
         for i in range(len(self.dseas)):
             cy = self.dseas[i]
+            cy = list(filter(lambda x: not x == -9999, cy))
             if len(cy) > 2:
                 self.dann[i] = sum(cy)/len(cy) 
             else:
@@ -144,5 +145,10 @@ class realStation:
         with open("Data/" + str(self.id) + ".csv", "w+") as f:
             f.write("year,DJF,MAM,JJA,SON,ANN\n")
             for index, year in enumerate(self.data):
-                f.write(f"{year.year},{round(self.seas[index][0]/100,2)},{round(self.seas[index][1]/100,2)},{round(self.seas[index][2]/100,2)},{round(self.seas[index][3]/100,2)},{round(self.ann[index]/100, 2)}\n")
-                
+                seas = [round(self.seas[index][0]/100,2), round(self.seas[index][1]/100,2), round(self.seas[index][3]/100,2), round(self.seas[index][3]/100,2), round(self.ann[index]/100, 2)]
+                for i in range(5):
+                    if seas[i] == -99.99:
+                        seas[i] = "NaN"
+
+                f.write(f"{year.year},{seas[0]},{seas[1]},{seas[2]},{seas[3]},{seas[4]}\n")
+      
