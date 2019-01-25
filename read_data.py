@@ -1,17 +1,33 @@
-from dataclasses import dataclass
+#from dataclasses import dataclass
 from typing import List
 
 
-@dataclass
-class year:# Klasse zum Speichern von Daten eines Jahres.
+#@dataclass
+#class year:# Klasse zum Speichern von Daten eines Jahres.
+#    year:int
+#    months:List[float]
+
+class year:
     year:int
     months:List[float]
+    def __init__(self, year, months):
+        self.year = year
+        self.months = months
 
 
-@dataclass
-class station:# Klasse zum Speichern und verwalten von Daten bezülich einer Station. 
+
+#@dataclass
+#class station:# Klasse zum Speichern und verwalten von Daten bezülich einer Station. 
+#    station_id:int
+#    years:List[year]
+
+class station:
     station_id:int
     years:List[year]
+    def __init__(self, station_id, years):
+        self.station_id = station_id
+        self.years = years
+
 
 
 def read_data(path):# Einlesen der Daten
